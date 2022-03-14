@@ -16,9 +16,8 @@
 
                     {{ __('You are logged in!') }} 
                 </div>
-                <form>
-
-                </form>
+               
+                
                 @if (!empty($data))
                 @foreach($data['links'] as $link)
                 <ul>
@@ -26,24 +25,29 @@
                 </ul>
                 @endforeach
                 @endif
-                
+               
+                <form  action="{{ route('submit') }}" method="POST">
+                @csrf
                 <label>FormName</label>
                 <input type="text" name="formName">
                 @if (isset($data['builder']))
                 @foreach($data['builder'] as $builder)
                 <label>{{$builder['label']}} : <label>
+                <input type="hidden" name="labelvalue" value="{{$builder['label']}}">
                 @if ($builder['name'] !='select')
-                <input type="{{$builder['name']}}">
+                <input type="{{$builder['name']}}" name="builderTextName">
                 @endif
                 @if ($builder['name']=='select')
-                <select>
-                <option val="m">male</option>
-                <option val="f">female</option>
-                <option val="o">other</option>
+                <select name="gender">
+                <option value="m">male</option>
+                <option value="f">female</option>
+                <option value="o">other</option>
                 <select>
                 @endif
                 @endforeach
-                <input type="submit" onclick="window.location='{{ route("createform") }}'" class="btn btn-success" value="save">
+                <input type="submit" class="btn btn-success" value="save">
+                </form>
+                
                 <input type="submit" onclick="window.location='{{ route("removeform") }}'" class="btn btn-primary" value="remove">
                 @endif
                 

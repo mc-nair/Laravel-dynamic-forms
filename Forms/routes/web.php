@@ -21,14 +21,23 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/createform', 'FormController@index')->name('createform');
+//Route::get('/createform', 'FormController@index')->name('createform');
 
 Route::get('/addForm/{name}', 'FormController@add')->name('addForm');
 
-Route::post('/contact', 'FormController@mailContactForm');
 
 Route::get('/createform', 'FormController@index')->name('createform');
 
 Route::get('/removeform', 'FormController@index')->name('removeform');
+
+Route::post('/submit', 'FormController@submit')->name('submit');
+
+//Route::post('/createform', 'FormController@createform')->name('createform');
+
+Route::get('/createquestions/{id}', 'FormController@createquestions')->name('createquestions');
+
+Route::get('/questions', 'FormController@questions')->name('questions');
+
+
 
 
